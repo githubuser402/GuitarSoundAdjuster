@@ -1,0 +1,71 @@
+body{
+  padding: 0px;
+  margin: 0px;
+  min-height: 100vh;
+  /* background: linear-gradient(#fcfcfc, #edeef0); */
+  background-color: #799c9a;
+  /* background-image: url("/media/stock_6_string1.png"); */
+  background-size: cover;
+  background-position: center;
+}
+
+.settings{
+  padding: 10px 10px;
+  border-radius: 8px;
+  background-color: #ddddff;
+  font-size: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  width: fit-content;
+}
+
+.guitar img{
+  transform: scale(0.7);
+}
+
+.radiobnts input {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  appearance: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50px;
+  background: gray;
+  color: #ececec;
+  font-size: 50px;
+  font-family: sans-serif;
+  transition: all 0.1s;
+}
+
+.radiobnts input:checked {
+  background: #efefef;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 0px #808080;
+  color: black;
+}
+
+.radiobnts input::before {
+  content: attr(label);
+  margin: 3px 12px;
+}
+
+#D, #A, #El{
+  /* top: 130px; */
+  left: 428px;
+}
+
+#G, #B, #Er{
+  left: 884px;
+}
+
+#D, #G{
+  top: 110px;
+}
+
+#A, #B{
+  top: 208px;
+}
+
+#El, #Er{
+  top:306px;
+}

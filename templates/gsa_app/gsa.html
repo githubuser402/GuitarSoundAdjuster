@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/gsa_style.css'%}">
+    <title>Guitar Sound Adjuster</title>
+  </head>
+  <body>
+    <div class="settings">
+
+    </div>
+
+    <div class="guitar">
+        <img src="/media/stock_6_string1.png" alt="">
+      <div class="radiobnts">
+        <input type="radio" label="D" id="D" name="string" value="D" checked>
+        <input type="radio" label="A" id="A" name="string" value="A">
+        <input type="radio" label="E" id="El" name="string" value="El">
+        <input type="radio" label="G" id="G" name="string" value="G">
+        <input type="radio" label="B" id="B" name="string" value="B">
+        <input type="radio" label="E" id="Er" name="string" value="Er">
+      </div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/gsa_script.js' %}"></script>
+  </body>
+</html>
