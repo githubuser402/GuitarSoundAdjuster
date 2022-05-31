@@ -1,6 +1,10 @@
 start_btn = document.getElementById("start-btn");
 let tunesRetrieved = false;
 let tunes;
+let microphoneContext;
+let microphoneSource;
+let microphoneProcessor;
+
 start_btn.onclick = () => {
 console.log("Clicked");
   navigator.mediaDevices.getUserMedia({audio:true, video: false})
@@ -8,43 +12,59 @@ console.log("Clicked");
 }
 
 class Thone{
-//Audio element that can be played
-  #audioElement;
   //audio context
   #audioCtx;
   //source node for the tune
   #audioSourceNode;
   //track name
   #audioName;
+  //buffer for the audio
+  #audioBuffer;
+  //offline context
+  #offlineCtx;
+
+  #loadAudio(audioName){
+    const request = new XMLHttpRequest();
+    request.open("GET", audioName);
+    request.responseType = "arraybuffer";
+    request.onload = () => {
+      let undecodedAudio = request.response;
+      this.#audioCtx.decodeAudioData(undecodedAudio, (data) => {this.#audioBuffer = data;});
+    }
+    request.send();
+  }
+
+  //get the frequency array of the audio
+  #getFrequecy(){
+
+  }
 
   constructor(audioElementName){
+    //creating audio context object
     this.#audioCtx = new AudioContext();
+
+    //loading audio file from the server
+    this.#loadAudio(audioElementName);
+
+    //audio file name may be used later
     this.#audioName = audioElementName;
-    try{
-      this.#audioElement = new Audio(audioElementName);
-
-      this.#audioElement.oncanplay = () => {
-        this.playAudio();
-        console.log(`${this.#audioName} is played`);
-      }
-
-      this.#audioElement.repeat = false;
-      // this.#audioSourceNode = this.#audioCtx.createMediaElementSource(this.#audioElement);
-
-    }catch(e){
-      console.log(e);
-    }
   }
 
   //method plays audio file
   playAudio(){
-    this.#audioElement.play();
+    const source = this.#audioCtx.createBufferSource();
+    source.buffer = this.#audioBuffer;
+    source.connect(this.#audioCtx.destination);
+    source.start();
   }
 }
 
+
+let i = 0;
 //function is executed on start button click
 //also microphone permission also requiered
-function handleSuccess(){
+function handleSuccess(stream){
+  //first click
   if(!tunesRetrieved){
     //requesting tunes from the server
     tunes = {
@@ -68,11 +88,24 @@ function handleSuccess(){
     //changing text on start button
     start_btn.innerText = "Sound Enabled";
 
+    //creating context for the microphone
+    microphoneContext = new AudioContext();
+    //creating source for the microphone
+    microphoneSource = microphoneContext.createMediaStreamSource(stream);
+    //creatong processor
+    microphoneProcessor = microphoneContext.createScriptProcessor(4096, 1, 1)
+
+    microphoneSource.connect(microphoneProcessor);
+    microphoneProcessor.connect(microphoneContext.destination);
+
+    microphoneProcessor.onaudioprocess = function(e){
+      // console.log(e.inputBuffer.bufferSize);
+      console.log(microphoneProcessor.bufferSize);
+    }
+
+    //start button works only one time
     tunesRetrieved = true;
   }
-
-
-
 
 }
 
