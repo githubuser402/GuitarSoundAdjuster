@@ -4,6 +4,7 @@ let tunes;
 let microphoneContext;
 let microphoneSource;
 let microphoneProcessor;
+let microphoneAnalyser;
 
 start_btn.onclick = () => {
 console.log("Clicked");
@@ -22,6 +23,8 @@ class Thone{
   #audioBuffer;
   //offline context
   #offlineCtx;
+  //frequency buffer
+  #freqBuffer
 
   #loadAudio(audioName){
     const request = new XMLHttpRequest();
@@ -35,13 +38,16 @@ class Thone{
   }
 
   //get the frequency array of the audio
-  #getFrequecy(){
-
+  #findFrequecy(){
+    let analyser = this.#audioCtx.createAnalyser();
+    freqBuffer = new Float32Array();                                            //ended Q
   }
 
   constructor(audioElementName){
     //creating audio context object
     this.#audioCtx = new AudioContext();
+
+
 
     //loading audio file from the server
     this.#loadAudio(audioElementName);
@@ -60,7 +66,7 @@ class Thone{
 }
 
 
-let i = 0;
+let freqDomain;
 //function is executed on start button click
 //also microphone permission also requiered
 function handleSuccess(stream){
@@ -92,21 +98,36 @@ function handleSuccess(stream){
     microphoneContext = new AudioContext();
     //creating source for the microphone
     microphoneSource = microphoneContext.createMediaStreamSource(stream);
-    //creatong processor
-    microphoneProcessor = microphoneContext.createScriptProcessor(4096, 1, 1)
+    //creating microphone analyser node
+    microphoneAnalyser = microphoneContext.createAnalyser();
+    microphoneAnalyser.minDecibels = -100;
+    microphoneAnalyser.maxDecibels = -10;
+    microphoneAnalyser.smoothingTimeConstant = 0.85;
 
-    microphoneSource.connect(microphoneProcessor);
-    microphoneProcessor.connect(microphoneContext.destination);
+    // microphoneProcessor = microphoneContext.createScriptProcessor(4096, 1, 1);
 
-    microphoneProcessor.onaudioprocess = function(e){
-      // console.log(e.inputBuffer.bufferSize);
-      console.log(microphoneProcessor.bufferSize);
-    }
+    // microphoneProcessor.onaudioprocess = (audioProcessEvent) => {
+    //   let inputBuffer = audioProcessEvent.inputBuffer;
+    //   freqDomain = new Float32Array(microphoneAnalyser.fftSize);
+    //   microphoneAnalyser.getFloatFrequencyData(freqDomain);
+    //   console.log(freqDomain);
+    // }
+
+    //creating conection between nodes
+    microphoneSource.connect(microphoneAnalyser);
+    // microphoneProcessor.connect(microphoneAnalyser);
+    microphoneAnalyser.connect(microphoneContext.destination);
 
     //start button works only one time
     tunesRetrieved = true;
   }
+  setInterval(() => {
+    freqDomain = new Float32Array(microphoneAnalyser.fftSize);
+    microphoneAnalyser.getFloatTimeDomainData(freqDomain);
+    console.log(freqDomain);
 
+
+  }, 1000);
 }
 
 
