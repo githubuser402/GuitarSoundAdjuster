@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/gsa_list_style.css' %}">
+    <title>Sound Adjuster</title>
+  </head>
+  <body>
+    {% for instrument in instruments%}
+    <div class="">
+      <h3>{{instrument.name}}</h3>
+      <p>{{instrument.picture_path}}</p>
+    </div>
+    {% endfor %}
+  </body>
+</html>

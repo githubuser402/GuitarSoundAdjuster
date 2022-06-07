@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{{instrument.name}}</title>
+    <link rel="stylesheet" href="{% static 'css/gsa_detailed_style.css' %}">
+  </head>
+  <body style="background: url('{{instrument.picture_path}}')">
+    <div class="blurred-layer">
+      <div class="header">
+        <div class="name">
+          <p>{{instrument.name}}</p>
+        </div>
+      </div>
+
+      <div class="instrument">
+        <div class="inst-pic">
+          <!-- <img style="transform: scale(1.2)" src="{{instrument.picture_path}}" alt=""> -->
+        </div>
+
+        <div class="controls">
+
+        </div>
+      </div>
+      {% for sound in sounds %}
+      <audio src="{{sound.sound_path}}" id="{{sound.sound_name}}"></audio>
+      {% endfor %}
+    </div>
+  </body>
+</html>

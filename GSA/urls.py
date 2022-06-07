@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.gsaRender, name="gsa_render"),
-    path("1", views.trash, name="trash"),
+    path("", views.GSAList.as_view(), name="gsa_render"),
+    path("<str:link>", views.GSADetailedView.as_view(), name="instrument"),
 ]
