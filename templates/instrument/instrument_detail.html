@@ -15,17 +15,20 @@
       </div>
 
       <div class="instrument">
-        <div class="inst-pic">
-          <!-- <img style="transform: scale(1.2)" src="{{instrument.picture_path}}" alt=""> -->
-        </div>
-
         <div class="controls">
+
+          {% for sound in sounds %}
+              <div class="sound">
+                  <label for="{{sound.sound_name}}">{{sound.sound_name}}</label>
+                  <input type="radio"  id="{{sound.sound_name}}" name="sounds" value="{{sound.sound_name}}" class="sounds">
+                  <audio src="{{sound.sound_path}}"></audio>
+              </div>
+          {% endfor %}
 
         </div>
       </div>
-      {% for sound in sounds %}
-      <audio src="{{sound.sound_path}}" id="{{sound.sound_name}}"></audio>
-      {% endfor %}
+
+      <script type="text/javascript" src="{% static 'js/gsa_detail_script.js' %}"></script>
     </div>
   </body>
 </html>
