@@ -11,6 +11,7 @@ class Instrument(models.Model):
 
 class Sound(models.Model):
     sound_name = models.CharField(max_length=50)
+    sound_number = models.IntegerField()
     sound_path = models.CharField(max_length=100)
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
 
