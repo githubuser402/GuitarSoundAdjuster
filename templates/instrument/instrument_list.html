@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/gsa_list_style.css' %}">
     <title>Sound Adjuster</title>
   </head>
-  <body style="background: url('/media/guitar_pic/6_string_guitar.jpg')">
+  <body style="background: url('/media/instruments/6_string_guitar.jpg')">
     <nav class="navbar navbar-expand-lg navbar-light menu-list">
       <a class="navbar-brand menu-item" href="/gsa">GSA</a>
       <a class="navbar-brand" href="/gsa/help">Help</a>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-lg-3 col-sm-4 offset-lg-0 offset-sm-2 col-11 offset-1">
             <div class="card cst">
-              <img class="card-img-top img-st" src="{{instrument.picture_path}}" alt="Instrument picture">
+              <img class="card-img-top img-st" src="{{instrument.picture.path}}" alt="Instrument picture">
               <div class="card-body">
                 <p class="card-text">{{instrument.name}}</p>
                 <!-- <p>$390</p> -->
