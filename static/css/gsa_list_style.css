@@ -1,5 +1,23 @@
 body{
   margin: 0px;
   padding:0px;
-  background-color: #ddfffd;
+  box-sizing: border-box;
+}
+
+.menu-list{
+  background-color: rgba(210, 210, 205, 1);
+  /* margin-bottom: 24px; */
+}
+
+.container{
+  margin-top: 60px;
+}
+
+.cst{
+  transform: scale(1.2);
+  padding: 10px 10px 15px 10px;
+}
+
+.img-st{
+  /* margin: 10px; */
 }

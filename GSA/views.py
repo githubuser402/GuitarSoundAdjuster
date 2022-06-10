@@ -9,6 +9,7 @@ class GSAList(ListView):
     template_name = "instrument/instrument_list.html"
     context_object_name = "instruments"
 
+
 class GSADetailedView(View):
     def get(self, request, **kwargs):
         if(kwargs["link"] == "help"):
