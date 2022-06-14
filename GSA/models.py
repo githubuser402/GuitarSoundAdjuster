@@ -23,6 +23,7 @@ class Sound(models.Model):
     sound_number = models.IntegerField()
     sound_path = models.CharField(max_length=200)
     instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+    frequency = models.FloatField()
 
     def __str__(self):
         return self.sound_name

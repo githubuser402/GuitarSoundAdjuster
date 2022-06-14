@@ -13,6 +13,15 @@ body{
   margin-top: 60px;
 }
 
+.instrument{
+  transition: 300ms;
+}
+
+.instrument:hover{
+  transform: scale(1.03);
+  transition: 400ms;
+}
+
 .cst{
   transform: scale(1.2);
   padding: 10px 10px 15px 10px;
