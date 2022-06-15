@@ -5,8 +5,12 @@ body{
 }
 
 .menu-list{
-  background-color: rgba(210, 210, 205, 1);
+  background-color: rgba(210, 210, 205, 0.7);
   /* margin-bottom: 24px; */
+}
+
+.menu-list .menu-item{
+  margin-left: 20px;
 }
 
 .container{
@@ -24,7 +28,13 @@ body{
 
 .cst{
   transform: scale(1.2);
-  padding: 10px 10px 15px 10px;
+  padding: 10px 10px 3px 10px;
+}
+
+.inst-name{
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .img-st{

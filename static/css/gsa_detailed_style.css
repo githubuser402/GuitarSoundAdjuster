@@ -15,7 +15,7 @@
 }
 
 .controls{
-  margin: 30px 15px 70px 15px;
+  margin: 5px 15px 25px 15px;
   display: flex;
   flex-direction: row;
 }
@@ -28,6 +28,11 @@
   background-color: rgba(210, 210, 205, 0.5);
 }
 
+.sound-checked{
+  background-color: rgba(89, 111, 151, 0.7);
+  border-radius: 8px;
+}
+
 .menu-list{
   background-color: rgba(210, 210, 205, 0.3);
 }
@@ -38,4 +43,22 @@
 
 .freq-info{
   font-size: 14px;
+}
+
+.inst-name{
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.sound-stat{
+  font-size: 19px;
+}
+
+.sound-stat span{
+  font-weight: 600;
+  font-size: 21px;
+}
+
+.sound-correction{
+  font-size: 19px; 
 }
