@@ -4,7 +4,7 @@ body{
   box-sizing: border-box;
 }
 
-menu-list{
+.menu-list{
   background-color: rgba(210, 210, 205, 0.7);
   /* margin-bottom: 24px; */
 }

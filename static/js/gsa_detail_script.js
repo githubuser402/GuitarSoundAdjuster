@@ -80,7 +80,6 @@ function gotPitch(error, frequency) {
 }
 
 function evaluateSound(current_freq, frequencies, current_sound){
-  // sound_freq = frequencies.filter(freq => {freq.name === current_sound})[0].frequency;
   let sound_freq;
   frequencies.forEach(freq => {
     if(freq.name === current_sound){
