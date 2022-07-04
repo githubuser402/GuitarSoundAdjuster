@@ -26,4 +26,4 @@ class Sound(models.Model):
     frequency = models.FloatField()
 
     def __str__(self):
-        return self.sound_name
+        return f"{self.sound_number}|{self.sound_name}"
