@@ -1,2 +1,3 @@
 *.pyc
 site1_uwsgi.ini
+site1/settings.py
